@@ -18,13 +18,23 @@ Route::group(['prefix' => LaravelLocalization::setLocale(), 'middleware' => ['lo
            // Route::resource('clients.orders', 'Client\OrderController')->except(['show']);
 
             //order routes
-          //  Route::resource('orders', 'OrderController');
-       //     Route::get('/orders/{order}/products', 'OrderController@products')->name('orders.products');
+            //     Route::get('/orders/{order}/products', 'OrderController@products')->name('orders.products');
 
 
             //user routes
             Route::resource('users', 'UserController')->except(['show']);
-            Route::get('index',"dashboardController@index")->name('index');
+            Route::resource('categories', 'CategoryController')->except(['show']);
+            Route::resource('products', 'ProductController')->except(['show']);
+            Route::resource('clients', 'ClientController')->except(['show']);
+           // Route::resource('clients/orders', 'client\OrderController')->except(['show']);
+           Route::resource('clients.orders', 'Client\OrderController')->except(['show']);
+           Route::resource('orders', 'OrderConroller');
+           Route::get('orders/products/{order}', 'OrderConroller@products')->name('orders.products');
+
+          //  Route::resource('orders', 'client\OrderController');
+
+            Route::get('welcome',"WelcomeController@index")->name('welcome');
+            Route::get('/', 'WelcomeController@index')->name('welcome');
 
 
         });//end of dashboard routes

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    
+
     //add product btn
     $('.add-product-btn').on('click', function (e) {
 
@@ -10,11 +10,15 @@ $(document).ready(function () {
 
         $(this).removeClass('btn-success').addClass('btn-default disabled');
 
+        //   <input type="hidden"  name="product_ids[]" value="${id}">
+
         var html =
             `<tr>
                 <td>${name}</td>
+
                 <td><input type="number" name="products[${id}][quantity]" data-price="${price}" class="form-control input-sm product-quantity" min="1" value="1"></td>
-                <td class="product-price">${price}</td>               
+
+                <td class="product-price">${price}</td>
                 <td><button class="btn btn-danger btn-sm remove-product-btn" data-id="${id}"><span class="fa fa-trash"></span></button></td>
             </tr>`;
 
@@ -32,11 +36,10 @@ $(document).ready(function () {
     });//end of disabled
 
     //remove product btn
-    $('body').on('click', '.remove-product-btn', function(e) {
+    $('body').on('click', '.remove-product-btn',function(e) {
 
         e.preventDefault();
-        var id = $(this).data('id');
-
+        var id =$(this).data('id') ;
         $(this).closest('tr').remove();
         $('#product-' + id).removeClass('btn-default disabled').addClass('btn-success');
 
@@ -50,7 +53,7 @@ $(document).ready(function () {
 
         var quantity = Number($(this).val()); //2
         var unitPrice = parseFloat($(this).data('price').replace(/,/g, '')); //150
-        console.log(unitPrice);
+       // alert(unitPrice);
         $(this).closest('tr').find('.product-price').html($.number(quantity * unitPrice, 2));
         calculateTotal();
 
@@ -62,7 +65,7 @@ $(document).ready(function () {
         e.preventDefault();
 
         $('#loading').css('display', 'flex');
-        
+
         var url = $(this).data('url');
         var method = $(this).data('method');
         $.ajax({
@@ -94,7 +97,7 @@ function calculateTotal() {
     var price = 0;
 
     $('.order-list .product-price').each(function(index) {
-        
+
         price += parseFloat($(this).html().replace(/,/g, ''));
 
     });//end of product price

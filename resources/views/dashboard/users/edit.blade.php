@@ -9,7 +9,7 @@
             <h1>@lang('site.users')</h1>
 
             <ol class="breadcrumb">
-                <li><a href="{{ route('dashboard.index') }}"><i class="fa fa-dashboard"></i> @lang('site.dashboard')</a></li>
+                <li><a href="{{ route('dashboard.welcome') }}"><i class="fa fa-dashboard"></i> @lang('site.dashboard')</a></li>
                 <li><a href="{{ route('dashboard.users.index') }}"> @lang('site.users')</a></li>
                 <li class="active">@lang('site.edit')</li>
             </ol>
@@ -53,7 +53,7 @@
                         </div>
 
                         <div class="form-group">
-                            <img src="{{ asset('uploads/user_images/default.png') }}"  style="width: 100px" class="img-thumbnail image-preview" alt="">
+                            <img src="{{ $user->image_path }}"  style="width: 100px" class="img-thumbnail image-preview" alt="">
                         </div>
 
 
